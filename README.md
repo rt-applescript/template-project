@@ -1,2 +1,2 @@
-# template-project
-Template for creating an AppleScript Core Project
+# template-applescript-project
+Template for creating an AppleScript Core based Project
