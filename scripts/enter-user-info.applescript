@@ -8,9 +8,9 @@
 		Work Key - Just an example.
 		
 	@Uninstall:
-		plutil -remove 'Work Key' ~/applescript-core/config-user.plist
+		plutil -remove 'Domain Key' ~/applescript-core/config-user.plist
 *)
-set infoKey to "Work Key" -- e.g. apple
+set infoKey to "Domain Key" -- e.g. apple
 
 set std to script "std"
 set logger to std's import("logger")'s new("enter-user-info")
