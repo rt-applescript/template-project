@@ -9,10 +9,11 @@
 
 set username to short user name of (system info)
 set FOLDER_PATH_KEY to "Temporary Path"
+set PLIST_PATH to "~/applescript-core/config-user.plist"
 
 set currentPath to missing value
 try
-	set currentPath to do shell script "plutil -extract '" & FOLDER_PATH_KEY & "' raw ~/applescript-core/config-user.plist"
+	set currentPath to do shell script "plutil -extract '" & FOLDER_PATH_KEY & "' raw $PLIST_PATH"
 end try
 
 if currentPath is not missing value and currentPath is not "" then
@@ -26,4 +27,4 @@ set posixPath to (POSIX path of chosenFolder)
 
 if posixPath ends with "/" and length of posixPath is greater than 1 then set posixPath to text 1 thru -2 of posixPath
 
-do shell script "plutil -replace '" & FOLDER_PATH_KEY & "' -string \"" & posixPath & "\" ~/applescript-core/config-user.plist"
+do shell script "plutil -replace '" & FOLDER_PATH_KEY & "' -string \"" & posixPath & "\" $PLIST_PATH"
