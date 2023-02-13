@@ -1,7 +1,9 @@
 (*
 	This script is used to add the current project into the config-user so that
 	the "Create Automator App" and "Create Voice Command App" can determine 
-	where to link to the local scripts.
+	where to link to the local scripts. By doing this, we can transfer the .app 
+	scripts to another Mac OS and they will work without recreating them as long 
+	as you have the dependent projects checked out and registered on the target Mac.
 
 	Checks the config-user.plist then adds this project key and path if it is 
 	not yet registered. 
@@ -17,6 +19,7 @@
 		
 *)
 set projectKey to "Project template-applescript-project"
+set projectPathsKey to "AppleScript Projects Path"
 
 set std to script "std"
 set logger to std's import("logger")'s new("register-project")
@@ -39,8 +42,8 @@ end tell
 set projectPath to textUtil's replace(result, "/scripts/register-project.applescript", "")
 configUser's setValue(projectKey, projectPath)
 
-set projectList to configUser's getList("AppleScript Projects")
+set projectList to configUser's getList(projectPathsKey)
 if projectList is missing value then set projectList to {}
-set end of projectList to projectKey
-configUser's setValue("AppleScript Projects", projectList)
+set end of projectList to projectPath
+configUser's setValue(projectPathsKey, projectList)
 logger's infof("The project: {} is now registered", projectPath)
