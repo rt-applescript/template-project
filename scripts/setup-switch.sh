@@ -3,6 +3,7 @@
 # Adds a switch into switches.plist
 
 NEW_SWITCH_NAME="New Switch Name"
+NEW_SWITCH_NAME="$1" # Or, Pass an argument to this script with the key.
 NEW_SWITCH=$(plutil -extract $NEW_SWITCH_NAME raw ~/applescript-core/switches.plist)
 
 if [[ $NEW_SWITCH == *"error"* ]];
